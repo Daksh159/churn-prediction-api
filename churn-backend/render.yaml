@@ -5,10 +5,8 @@ services:
     region: singapore
     plan: free
 
-    rootDir: churn-backend
-
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app:app --host 0.0.0.0 --port 8000
+    buildCommand: pip install -r churn-backend/requirements.txt
+    startCommand: uvicorn churn-backend.app:app --host 0.0.0.0 --port $PORT
 
     envVars:
       - key: PYTHON_VERSION
