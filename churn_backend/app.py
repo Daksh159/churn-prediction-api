@@ -2,13 +2,25 @@ from fastapi import FastAPI
 from churn_backend.model_loader import pipeline
 import pandas as pd
 
-app = FastAPI()
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 
 from pydantic import BaseModel, Field
 from pydantic import ConfigDict
 from fastapi import HTTPException
+
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://churn-prediction-api-q7sr.onrender.com",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 FEATURE_MAP = {
     "Usage_Frequency": "Usage Frequency",
@@ -57,17 +69,7 @@ def predict(customer: CustomerInput):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "*"
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 
 
 
