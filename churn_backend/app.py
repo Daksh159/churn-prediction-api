@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from model_loader import pipeline
+from churn_backend.model_loader import pipeline
 import pandas as pd
 
 app = FastAPI()
