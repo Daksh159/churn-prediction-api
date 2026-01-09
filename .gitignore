@@ -8,3 +8,7 @@ __pycache__/
 # OS junk
 .DS_Store
 Thumbs.db
+
+churn-frontend/node_modules
+churn-frontend/dist
+.env
